@@ -1,0 +1,20 @@
+{
+  "name": "xero-promise",
+  "version": "1.0.0",
+  "dependencies": {
+    "oauth": "0.9.12",
+    "easyxml": "1.0.0",
+    "xml2js": "0.4.4",
+    "inflect": "0.3.0"
+  },
+  "description": "Xero.com Node Library Using Promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "\"xero-promise\""
+  ],
+  "author": "Liam Neville <liam.neville89@gmail.com>",
+  "license": "MIT"
+}
