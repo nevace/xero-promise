@@ -9,9 +9,6 @@
   },
   "description": "Xero.com Node Library Using Promises",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "\"xero-promise\""
   ],

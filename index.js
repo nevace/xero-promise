@@ -1,13 +1,13 @@
 'use strict'
 
-var crypto = require("crypto");
-var oauth = require("oauth");
-var EasyXml = require('easyxml');
-var xml2js = require('xml2js');
-var inflect = require('inflect');
+const crypto = require("crypto");
+const oauth = require("oauth");
+const EasyXml = require('easyxml');
+const xml2js = require('xml2js');
+const inflect = require('inflect');
 
-var XERO_BASE_URL = 'https://api.xero.com';
-var XERO_API_URL = XERO_BASE_URL + '/api.xro/2.0';
+const XERO_BASE_URL = 'https://api.xero.com';
+const XERO_API_URL = XERO_BASE_URL + '/api.xro/2.0';
 
 
 class Xero {
@@ -37,7 +37,7 @@ class Xero {
         }
       }
 
-      const process = (err, xml, res) => {
+      function process(err, xml, res) {
         if (err) {
           return reject(err);
         }
@@ -53,14 +53,10 @@ class Xero {
         });
       };
 
-      //return this.oa._performSecureRequest(this.key, this.secret, method, XERO_API_URL + path, null, post_body, content_type, callback ? process : null);
       return this.oa._performSecureRequest(this.key, this.secret, method, XERO_API_URL + path, null, post_body, content_type, process);
 
     });
   }
-
 }
-
-
 
 module.exports = Xero;
