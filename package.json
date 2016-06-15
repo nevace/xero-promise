@@ -1,6 +1,6 @@
 {
   "name": "xero-promise",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "dependencies": {
     "oauth": "0.9.12",
     "easyxml": "1.0.0",

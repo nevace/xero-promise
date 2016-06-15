@@ -7,7 +7,7 @@ const xml2js = require('xml2js');
 const inflect = require('inflect');
 
 const XERO_BASE_URL = 'https://api.xero.com';
-const XERO_API_URL = XERO_BASE_URL + '/api.xro/2.0';
+const XERO_API_URL = `${XERO_BASE_URL}/api.xro/2.0`;
 
 
 class Xero {
@@ -26,19 +26,19 @@ class Xero {
     let postBody = null;
     let contentType = null;
 
-    return new Promise((resolve, reject) => {
-      if (method && method !== 'GET' && body) {
-        if (Buffer.isBuffer(body)) {
-          postBody = body;
-        } else {
-          const root = path.match(/([^\/\?]+)/)[1];
-          postBody = new EasyXml({ rootElement: inflect.singularize(root), rootArray: root, manifest: true }).render(body);
-          contentType = 'application/xml';
-        }
+    if (method && method !== 'GET' && body) {
+      if (Buffer.isBuffer(body)) {
+        postBody = body;
+      } else {
+        const root = path.match(/([^\/\?]+)/)[1];
+        postBody = new EasyXml({ rootElement: inflect.singularize(root), rootArray: root, manifest: true }).render(body);
+        contentType = 'application/xml';
       }
+    }
 
-      function process(err, xml, res) {
+    return new Promise((resolve, reject) => {
 
+      this.oa._performSecureRequest(this.key, this.secret, method, XERO_API_URL + path + '?summarizeErrors=false', null, postBody, contentType, function(err, data, res) {
         if (err) {
           try {
             err.data = JSON.parse(err.data);
@@ -47,19 +47,9 @@ class Xero {
             return reject(err);
           }
         }
-
-        this.parser.parseString(xml, (err, json) => {
-          if (err) return reject(err);
-          if (json && json.Response && json.Response.Status !== 'OK') {
-            return reject(res);
-          } else {
-            return resolve(json);
-          }
-        });
-      }
-
-      return this.oa._performSecureRequest(this.key, this.secret, method, XERO_API_URL + path, null, postBody, contentType, process);
-
+        data = (typeof data === 'string') ? JSON.parse(data) : data;
+        return resolve(data);
+      });
     });
   }
 }
