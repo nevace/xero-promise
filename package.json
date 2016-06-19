@@ -1,16 +1,21 @@
 {
   "name": "xero-promise",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "dependencies": {
-    "oauth": "0.9.12",
+    "co": "^4.6.0",
     "easyxml": "1.0.0",
-    "inflect": "0.3.0"
+    "inflect": "0.3.0",
+    "oauth": "0.9.12"
   },
-  "description": "Xero.com Node Library Using Promises",
+  "description": "A Node wrapper for the Xero API that returns a promise.",
   "main": "index.js",
   "keywords": [
     "\"xero-promise\""
   ],
-  "author": "Liam Neville <liam.neville89@gmail.com>",
-  "license": "MIT"
+  "author": "Liam Neville <me@liamneville.co.uk>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nevace/xero-promise.git"
+  }
 }
