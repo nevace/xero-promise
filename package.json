@@ -1,7 +1,8 @@
 {
   "name": "xero-promise",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "dependencies": {
+    "byte-converter": "^0.1.4",
     "co": "^4.6.0",
     "easyxml": "1.0.0",
     "inflect": "0.3.0",
